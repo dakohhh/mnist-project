@@ -1,0 +1,33 @@
+.drawing-board {
+    margin-top: 80px;
+}
+
+
+.button-section {
+
+    margin-top: 10px;
+    
+}
+
+
+
+.predict-results{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+
+.predict-canvas{
+    border: 1px solid black;
+    width: 500px;
+    height: 50px;
+    margin-top: 30px;
+
+
+}
+
+
+
