@@ -71,8 +71,8 @@
             function draw(e) {
                 if (!isDrawing) return;
 
-                context.lineWidth = 2;
-                context.lineCap = "round";
+                context.lineWidth = 30;
+                // context.lineCap = "round";
                 context.strokeStyle = "#000";
 
                 context.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
@@ -91,7 +91,31 @@
             const canvas = document.getElementById("drawingCanvas");
             const imageData = canvas.toDataURL(); // Get image data as a base64-encoded URL
             // Now you can send 'imageData' to the server using AJAX or by submitting a form
-            console.log("Sending image data:", imageData);
+
+            const img = new Image();
+    
+            // Set the source of the Image object to the base64-encoded image data
+            img.src = imageData;
+            
+            // Set the onload callback to handle image processing after it's loaded
+            img.onload = function() {
+                // Create a new canvas to resize the image
+                const resizedCanvas = document.createElement("canvas");
+                const resizedContext = resizedCanvas.getContext("2d");
+
+                // Resize the image to 28x28 pixels
+                resizedCanvas.width = 8;
+                resizedCanvas.height = 8;
+                resizedContext.drawImage(img, 0, 0, 8, 8);
+
+
+                const resizedImageData = resizedCanvas.toDataURL();
+
+                // Now you can send 'resizedImageData' to the server using AJAX or by submitting a form
+                console.log("Resized image data:", resizedImageData);
+            };
+
+
         });
 
 
