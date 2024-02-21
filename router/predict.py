@@ -1,4 +1,8 @@
 import asyncio
+from xhr.exceptions import BadRequestException
+from xhr.response import CustomResponse
+from utils.query import PredictQuery
+from utils.model import MNISTModel
 from fastapi import APIRouter, Request, Depends
 
 
@@ -9,6 +13,12 @@ router = APIRouter(prefix="/predict", tags=["PREDICTION"])
 
 
 @router.post("/")
-async def predict_digit(request: Request, ):
+async def predict_digit(request: Request, query:PredictQuery):
 
-    return CustomResponse("Get Vendor Successful", data=result)
+
+    model = MNISTModel()
+
+
+    print(model.model)
+
+    return CustomResponse("predicted successfully ")

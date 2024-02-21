@@ -28,6 +28,17 @@ app.add_middleware(
 )
 
 
+from xhr.exceptions import *
+from router.predict import router as predict
+
+app.include_router(predict)
+app.add_exception_handler(UserExistException, user_exist_exception_handler)
+app.add_exception_handler(UnauthorizedException, unauthorized_exception_handler)
+app.add_exception_handler(ServerErrorException, server_exception_handler)
+app.add_exception_handler(NotFoundException, not_found)
+app.add_exception_handler(CredentialsException, credentail_exception_handler)
+app.add_exception_handler(BadRequestException, bad_request_exception_handler)
+
 
 
 @app.exception_handler(HTTPException)
@@ -48,6 +59,12 @@ async def http_exception_handler(request, exc: requests.HTTPError):
             "success": False,
         },
     )
+
+
+
+
+
+
 
 
 @app.get("/")
