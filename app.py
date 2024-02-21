@@ -5,6 +5,7 @@ from fastapi.responses import JSONResponse
 import requests
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, HTTPException, Request
+from fastapi.staticfiles import StaticFiles
 
 
 
@@ -28,11 +29,14 @@ app.add_middleware(
 )
 
 
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 from xhr.exceptions import *
 from router.predict import router as predict
 from router.mnist import router as mnist
 
 app.include_router(predict)
+app.include_router(mnist)
 app.add_exception_handler(UserExistException, user_exist_exception_handler)
 app.add_exception_handler(UnauthorizedException, unauthorized_exception_handler)
 app.add_exception_handler(ServerErrorException, server_exception_handler)
