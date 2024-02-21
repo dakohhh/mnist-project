@@ -21,6 +21,6 @@ async def predict_digit(request: Request, query:PredictQuery):
     pred = model.predict_digit(query.data)
 
 
-    data = {"predicted_value": pred}
+    data = {"predicted_value": int(pred.sum())}
 
     return CustomResponse("predicted successfully", data=data)

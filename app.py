@@ -11,7 +11,7 @@ from fastapi import FastAPI, HTTPException, Request
 CERTIFICATE = os.path.join(os.path.dirname(certifi.__file__), "cacert.pem")
 
 
-app = FastAPI(title="MNIST PROHECT")
+app = FastAPI(title="MNIST PROJECT")
 
 
 origins = [
