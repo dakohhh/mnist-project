@@ -30,6 +30,7 @@ app.add_middleware(
 
 from xhr.exceptions import *
 from router.predict import router as predict
+from router.mnist import router as mnist
 
 app.include_router(predict)
 app.add_exception_handler(UserExistException, user_exist_exception_handler)
