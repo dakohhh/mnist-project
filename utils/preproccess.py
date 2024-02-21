@@ -13,7 +13,13 @@ def preprocess_digit_image(base64_image_data:str):
 
     np_array = np.frombuffer(image_bytes, dtype=np.uint8)
 
-    image = cv2.imdecode(np_array, cv2.IMREAD_COLOR)
+    image = cv2.imdecode(np_array, cv2.IMREAD_UNCHANGED)
 
-    return image
+    cleaned_image:np.ndarray = image[:, :, 3]
+
+    flattened_image = cleaned_image.flatten()
+
+    reshaped_image = flattened_image.reshape(1, -1) // 12
+
+    return reshaped_image
 

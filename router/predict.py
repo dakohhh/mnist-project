@@ -18,7 +18,9 @@ async def predict_digit(request: Request, query:PredictQuery):
 
     model = MNISTModel()
 
+    pred = model.predict_digit(query.data)
 
-    print(model.model)
 
-    return CustomResponse("predicted successfully ")
+    data = {"predicted_value": pred}
+
+    return CustomResponse("predicted successfully", data=data)
